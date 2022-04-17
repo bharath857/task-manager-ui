@@ -19,7 +19,10 @@ export class UtilService {
   }
   constructor() {
     console.log(environment)
-    this.config = 'https://baymax-task-manager-api.herokuapp.com'
+    this.config = {
+      TASK_MANAGER_AP :'https://baymax-task-manager-api.herokuapp.com'
+    }
+    //this.config['TASK_MANAGER_AP'] = 'https://baymax-task-manager-api.herokuapp.com'
   }
   
 
