@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="text-center mt-2">
+    <h1>Manage your Pendning items</h1>
+  </div>
+  <div class="functions">
+    <button class="btn btn-info" (click)="filterTasks()" style="margin-left: 5rem;"> Get All Tasks</button>
+    <button class="btn btn-info mx-5" (click)="filterTasks('false')"> Get All Incompleted Tasks</button>
+    <button class="btn btn-info" (click)="filterTasks('true')"> Get All Completed Tasks</button>
+  </div>
+
+  <div class="creat-task" style="margin-top: 2rem; margin-bottom: 2rem;margin-left: 5rem;display: inline-flex;">
+    <label for="task">Create New task</label>
+    <input type="text" name="" id="" class="form-control mx-4" [(ngModel)]="newTaskName" placeholder="New task name"
+      maxlength="20" minlength="5" style="width: 15rem;">
+    <button class="btn btn-success" [disabled]="newTaskName.length < 5" (click)="createNewTask()">Create New
+      task</button>
+  </div>
+</div>
+<div class="tasks" style="margin-left: 5rem;" [hidden]="dataSource.data.length > 0 ? false : true">
+  <div style="width: 80%;">
+    <div class=" fit-in">
+      <form [formGroup]="taskForms">
+        <table class="table-alternate-rows" mat-table [dataSource]="dataSource" formArrayName='tasksArray' matSort
+          style="width: 100%;">
+          <caption *ngIf="false"></caption>
+
+          <ng-container matColumnDef="description">
+            <th class="table-header" mat-header-cell *matHeaderCellDef> Description</th>
+            <td class="table-cell" mat-cell *matCellDef="let row; let i = index"
+              [formGroupName]="(this.pageSize * this.pageIndex) + i">
+
+              <div class="valueDec" style="display: flex;">
+                <div *ngIf="!row.get('description_edit').value">
+                  <span>
+                    {{ row.get('description').value }}
+                  </span>
+                </div>
+
+                <div *ngIf="row.get('description_edit').value" class="form-control">
+                  <input matInput type="text" formControlName="description"
+                    [readonly]="!row.get('description_edit').value">
+                </div>
+
+                <div class="icons" style="display: inline-flex; justify-content: end;">
+
+                  <!--                   <button *ngIf="row.get('description_edit').value" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="clearValueInput('description', i, row)">
+                    <mat-icon>close</mat-icon>
+                  </button> -->
+
+                  <button *ngIf="!row.get('description_edit').value" matSuffix mat-icon-button aria-label="edit"
+                    (click)="changerowElementToedit('description', i, row)">
+                    <mat-icon>create</mat-icon>
+                  </button>
+
+                  <button *ngIf="row.get('description_edit').value" matSuffix mat-icon-button aria-label="save"
+                    (click)="saverowInput('description', i, row)">
+                    <mat-icon>done</mat-icon>
+                  </button>
+                </div>
+              </div>
+          </ng-container>
+
+
+          <ng-container matColumnDef="createdAt">
+            <th class="table-header" mat-header-cell *matHeaderCellDef> Task Created on </th>
+            <td class="table-cell" mat-cell *matCellDef="let row"> {{ row.get('createdAt').value | date}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="completed">
+            <th class="table-header" mat-header-cell *matHeaderCellDef> Completed </th>
+            <td class="table-cell" mat-cell *matCellDef="let row; let i = index"
+              [formGroupName]="(this.pageSize * this.pageIndex) + i">
+              <mat-checkbox class="example-margin" color="warn" [checked]="row.get('completed').value"
+                (click)="saverowInput('completed', i, row)"></mat-checkbox>
+            </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="updatedAt">
+            <th class="table-header" mat-header-cell *matHeaderCellDef> Task Updated on </th>
+            <td class="table-cell" mat-cell *matCellDef="let row"> {{ row.get('updatedAt').value | date}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" class="table-header-row"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-header-row"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell text-center" colspan="8">No tasks avaliable</td>
+          </tr>
+
+        </table>
+      </form>
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons="true" aria-label="Select page"
+      (page)="handlePageEvent($event)" [pageSize]="pageSize" [pageIndex]="pageIndex">
+    </mat-paginator>
+  </div>
+
+
+</div>

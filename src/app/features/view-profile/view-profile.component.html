@@ -1,0 +1,39 @@
+<div class="profile"
+    style="display: flex;justify-content: center;align-items: center; height: 60vh; background-color: #ff9063;">
+    <div class="container">
+        <div class="row align-items-center" style="align-items: center !important;">
+            <div class="col-xl-4 col-lg-5 col-md-5 col-sm-4">
+                <div class="user">
+                    <img [src]="userImage" alt="profile pic" width="400px" height="400px" style="border-radius: 20%;">
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-7 col-md-7 col-sm-8">
+                <div class="user-info" style="margin-left: 10rem;">
+                    <form [formGroup]="userProfile">
+                        <div class="name">
+                            <label for="name"> Name</label>
+                            <input class="form-control" type="text" formControlName="name" [readonly]="!editProfile">
+                        </div>
+                        <div class="emial">
+                            <label for="email"> Email</label>
+                            <input class="form-control" type="text" formControlName="email" [readonly]="!editProfile">
+                        </div>
+                        <div class="age">
+                            <label for="name"> Age</label>
+                            <input class="form-control" type="number" formControlName="age" [readonly]="!editProfile">
+                        </div>
+                        <div class="Created">
+                            <label for="name"> Account was created on</label>
+                        </div>
+                        <button *ngIf="!editProfile" class="btn btn-info" (click)="editOrUpdateProfile('edit')">Edit
+                            Profile</button>
+                        <button *ngIf="editProfile" class="btn btn-info" (click)="editOrUpdateProfile('edit')"
+                            [disabled]="!userProfile.valid">Update</button>
+                        <button *ngIf="editProfile" class="btn btn-danger mx-2"
+                            (click)="editOrUpdateProfile('cancel')">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

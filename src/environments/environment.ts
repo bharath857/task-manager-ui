@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  env:"DEVELPMENT",
+  TITLE:'DEVELOPMENT MODE',
+  TASK_MANAGER_AP:"http://localhost:3000"
 };
 
 /*

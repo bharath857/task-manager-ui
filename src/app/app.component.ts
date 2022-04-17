@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'task-manger-ui';
+  title = 'task-manager-ui';
+
+  constructor(
+    private router: Router){
+      
+    }
+  getUserDetails(event:any){
+    console.log(event)
+    this.router.navigate(['task-view'])
+  }
 }

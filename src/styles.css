@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+.error-snackbar {
+    background-color: red !important;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.success-snackbar {
+    background-color: green !important;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.info-snackbar {
+    background-color: rgb(14, 87, 182) !important;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.table-header-row {
+    height: 2.5rem !important;
+}
+
+.table-alternate-rows>thead>tr>th,
+.table-alternate-rows>tbody>tr>td,
+.table-alternate-rows>tbody>tr>th {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    border: 2px solid red !important;
+}
+
+.table-alternate-rows>thead>tr>th {
+    background-color: rgb(114 192 255) !important;
+    color: black  !important;
+}
+.table-alternate-rows>tbody>tr:nth-child(even)>td,
+.table-alternate-rows>tbody>tr:nth-child(odd)>th {
+    background-color: aqua !important;
+}
+
+.table-header {
+    width: 15rem !important;
+}
+
+.table-cell {
+    width: 15rem !important;
+}
+
+.fit-in {
+    max-height: 80vh !important;
+    overflow: auto  !important;
+}
