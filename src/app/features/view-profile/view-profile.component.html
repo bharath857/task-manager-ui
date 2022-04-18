@@ -33,6 +33,7 @@
                         </div>
                         <div class="Created">
                             <label for="name"> Account was created on</label>
+                            <p>{{ createdon | date}}</p>
                         </div>
                         <button *ngIf="!editProfile" class="btn btn-info" (click)="editOrUpdateProfile('edit')">Edit
                             Profile</button>

@@ -3,9 +3,9 @@
     <h1>Manage your Pendning items</h1>
   </div>
   <div class="functions">
-    <button class="btn btn-info m-2" (click)="filterTasks()"> Get All Tasks</button>
-    <button class="btn btn-info m-2" (click)="filterTasks('false')"> Get All Incompleted Tasks</button>
-    <button class="btn btn-info m-2" (click)="filterTasks('true')"> Get All Completed Tasks</button>
+    <button class="btn btn-info m-2" (click)="filterTasks()"> Show All Tasks</button>
+    <button class="btn btn-info m-2" (click)="filterTasks('false')"> Show Incompleted Tasks</button>
+    <button class="btn btn-info m-2" (click)="filterTasks('true')"> Show Completed Tasks</button>
   </div>
 
   <div class="creat-task">
@@ -17,6 +17,7 @@
   </div>
 
 </div>
+
 <div class="container-fluid" [hidden]="dataSource.data.length > 0 ? false : true">
   <div class="tasks">
     <div class=" fit-in">

@@ -16,6 +16,7 @@ export class ViewProfileComponent implements OnInit {
   editProfile: boolean = false;
   userProfile: FormGroup
   userId: string = '';
+  createdon:string = '';
 
   subscriptions: Subscription[] = [];
 
@@ -40,6 +41,7 @@ export class ViewProfileComponent implements OnInit {
           age: new FormControl(response.user.age, [Validators.required]),
           email: new FormControl(response.user.email, [Validators.required]),
         })
+        this.createdon = response.user.createdAt
         this.userId = response.user._id
         this.getProfilePic(response.user._id)
         this.snakbar.showSnakBar('User Info', MatSnackBarType.info)
@@ -113,7 +115,6 @@ export class ViewProfileComponent implements OnInit {
 
     if (event.target.files) {
       this.subscriptions.push(this.profile.updateUserProfileImage(selectedFile).subscribe((response: any) => {
-        console.log(response)
         if (response.success) {
           this.userImageFound = true;
           this.getProfilePic(this.userId)
@@ -124,5 +125,9 @@ export class ViewProfileComponent implements OnInit {
       }))
     }
 
+  }
+
+  logoutallDevices(){
+    
   }
 }

@@ -78,7 +78,6 @@ export class HeaderComponent implements OnInit {
     this.subscriptions.push(this.profile.sineUpforTaskAPI(name, email, password).subscribe((response: any) => {
       try {
         if (response.success) {
-          this.profile.setToken(response.token)
           this.onSuccessfullogin(response.user)
           this.snakbar.showSnakBar('User account created successfully', MatSnackBarType.success)
         } else {
@@ -108,8 +107,8 @@ export class HeaderComponent implements OnInit {
   }
 
   lointoAccount() {
-    let accountdetails = {/* 
-      email: 'name1@gmail.com',
+    let accountdetails = {
+      /* email: 'name1@gmail.com',
       password: 'name1@1234' */
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value

@@ -50,6 +50,7 @@
                             Mangager' }}</h2>
                         <p class="text-center"> See what Task manager is capable of for
                             free</p>
+                            <p *ngIf='singinpage' class="text-center">Please Create Account </p>
                     </div>
 
                     <div style="margin: 2rem;">
@@ -67,7 +68,7 @@
 
                             <mat-form-field class="form-input-width" appearance="fill">
                                 <mat-label>Password</mat-label>
-                                <input matInput placeholder="Password" formControlName="password">
+                                <input type="password" matInput placeholder="Password" formControlName="password">
                             </mat-form-field>
 
                             <div class="login-btn">
