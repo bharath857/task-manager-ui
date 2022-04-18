@@ -9,12 +9,12 @@
                 </div>
                 <div class="bts" style="display: inline-flex;margin-top: 1rem;">
                     <button [disabled]="!userImageFound" (click)="removeProfilePic()" class="btn btn-danger mx-2">Remove</button>
-                    <form method="POST" enctype="multipart/form-data">
+                    <form *ngIf="editProfile" method="POST" enctype="multipart/form-data">
                         <input (change)="uploadnewImage($event)" name="avatar" class="form-control" type="file" id="formFile" style="width: 15rem;">
                     </form>
                     
                 </div>
-                <p style="font-size: 10px;margin-left: 6rem;" >* only png, jpeg and less than 2MB</p>
+                <p *ngIf="editProfile" style="font-size: 10px;margin-left: 6rem;" >* only png, jpeg and less than 2MB</p>
             </div>
             <div class="col-xl-8 col-lg-7 col-md-7 col-sm-8">
                 <div class="user-info">
