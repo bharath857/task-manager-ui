@@ -1,14 +1,23 @@
 <div class="profile"
-    style="display: flex;justify-content: center;align-items: center; height: 60vh; background-color: #ff9063;">
+    style="display: flex;justify-content: center;align-items: center; min-height: 70vh; background-color: #ff9063;">
     <div class="container">
         <div class="row align-items-center" style="align-items: center !important;">
             <div class="col-xl-4 col-lg-5 col-md-5 col-sm-4">
                 <div class="user">
-                    <img [src]="userImage" alt="profile pic" width="400px" height="400px" style="border-radius: 20%;">
+                    <img [src]="userImage" alt="profile pic" width="350px" height="350px"
+                        style="border-radius: 20%; margin-top: 2rem;">
                 </div>
+                <div class="bts" style="display: inline-flex;margin-top: 1rem;">
+                    <button [disabled]="!userImageFound" (click)="removeProfilePic()" class="btn btn-danger mx-2">Remove</button>
+                    <form method="POST" enctype="multipart/form-data">
+                        <input (change)="uploadnewImage($event)" name="avatar" class="form-control" type="file" id="formFile" style="width: 15rem;">
+                    </form>
+                    
+                </div>
+                <p style="font-size: 10px;margin-left: 6rem;" >* only png, jpeg and less than 2MB</p>
             </div>
             <div class="col-xl-8 col-lg-7 col-md-7 col-sm-8">
-                <div class="user-info" style="margin-left: 10rem;">
+                <div class="user-info">
                     <form [formGroup]="userProfile">
                         <div class="name">
                             <label for="name"> Name</label>

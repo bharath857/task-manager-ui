@@ -1,28 +1,44 @@
 .background {
-    background: url(https://webimages.mongodb.com/_com_assets/cms/kyyr8df70fpa8mq3b-30.svg?auto=format%252Ccompress) bottom left;
+    background: url(https://webimages.mongodb.com/_com_assets/cms/kyyr8df70fpa8mq3b-30.svg?auto=format%252Ccompress);
     background-color: #023430;
-    background-repeat: no-repeat;
-    padding-bottom: 15%;
+    background-repeat: repeat;
+    padding-bottom: 10%;
     overflow: auto;
+}
+
+.task-manager-herading {
+    color: white;
+    margin-top: 3rem;
+}
+
+.task-manger-login-part {
+    background-color: white;
+    border-radius: 2rem;
+}
+
+.login-btn {
+    display: flex;
+    justify-content: center;
 }
 
 .change-btn-login {
     background-color: #00ed64;
     color: black;
-    margin-right: 5rem;
 }
 
 .change-btn-login:hover {
     border-radius: 20px;
 }
 
-.sigin-in{
+.sigin-in {
     color: white;
     margin-right: 2rem;
 }
-.form-input-name-width{
+
+.form-input-name-width {
     width: 30%;
 }
+
 .form-input-width {
     width: 100%;
     margin-top: 2rem;

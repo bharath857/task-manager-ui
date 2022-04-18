@@ -1,1 +1,16 @@
+.tasks {
+    margin: 1rem;
+}
 
+.creat-task {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.create-task-input {
+    max-width: 15rem;
+}
+
+.table-width{
+    width: 100%;
+}

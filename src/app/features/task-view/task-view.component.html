@@ -1,27 +1,28 @@
-<div class="row">
+<div class="container">
   <div class="text-center mt-2">
     <h1>Manage your Pendning items</h1>
   </div>
   <div class="functions">
-    <button class="btn btn-info" (click)="filterTasks()" style="margin-left: 5rem;"> Get All Tasks</button>
-    <button class="btn btn-info mx-5" (click)="filterTasks('false')"> Get All Incompleted Tasks</button>
-    <button class="btn btn-info" (click)="filterTasks('true')"> Get All Completed Tasks</button>
+    <button class="btn btn-info m-2" (click)="filterTasks()"> Get All Tasks</button>
+    <button class="btn btn-info m-2" (click)="filterTasks('false')"> Get All Incompleted Tasks</button>
+    <button class="btn btn-info m-2" (click)="filterTasks('true')"> Get All Completed Tasks</button>
   </div>
 
-  <div class="creat-task" style="margin-top: 2rem; margin-bottom: 2rem;margin-left: 5rem;display: inline-flex;">
+  <div class="creat-task">
     <label for="task">Create New task</label>
-    <input type="text" name="" id="" class="form-control mx-4" [(ngModel)]="newTaskName" placeholder="New task name"
-      maxlength="20" minlength="5" style="width: 15rem;">
+    <input type="text" name="" id="" class="form-control mx-2 create-task-input" [(ngModel)]="newTaskName"
+      placeholder="New task name" maxlength="20" minlength="5">
     <button class="btn btn-success" [disabled]="newTaskName.length < 5" (click)="createNewTask()">Create New
       task</button>
   </div>
+
 </div>
-<div class="tasks" style="margin-left: 5rem;" [hidden]="dataSource.data.length > 0 ? false : true">
-  <div style="width: 80%;">
+<div class="container-fluid" [hidden]="dataSource.data.length > 0 ? false : true">
+  <div class="tasks">
     <div class=" fit-in">
       <form [formGroup]="taskForms">
-        <table class="table-alternate-rows" mat-table [dataSource]="dataSource" formArrayName='tasksArray' matSort
-          style="width: 100%;">
+        <table class="table-alternate-rows table-width" mat-table [dataSource]="dataSource" formArrayName='tasksArray'
+          matSort>
           <caption *ngIf="false"></caption>
 
           <ng-container matColumnDef="description">
@@ -42,12 +43,6 @@
                 </div>
 
                 <div class="icons" style="display: inline-flex; justify-content: end;">
-
-                  <!--                   <button *ngIf="row.get('description_edit').value" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="clearValueInput('description', i, row)">
-                    <mat-icon>close</mat-icon>
-                  </button> -->
-
                   <button *ngIf="!row.get('description_edit').value" matSuffix mat-icon-button aria-label="edit"
                     (click)="changerowElementToedit('description', i, row)">
                     <mat-icon>create</mat-icon>

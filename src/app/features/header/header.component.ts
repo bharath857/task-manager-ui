@@ -36,8 +36,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*  email: 'name1@gmail.com',
-     password: 'name1@1234' */
     /* this.lointoAccount() */
   }
 

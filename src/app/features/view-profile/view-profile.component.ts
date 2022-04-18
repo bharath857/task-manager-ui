@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ViewProfileComponent implements OnInit {
 
-  userImage: string = "../../../assets/no-profile-pic-icon-7.jpg";
+  userImage: any = '../../../assets/no-profile-pic-icon-7.jpg';
   editProfile: boolean = false;
   userProfile: FormGroup
   userId: string = '';
@@ -35,7 +35,6 @@ export class ViewProfileComponent implements OnInit {
   getUserInfo() {
     this.subscriptions.push(this.profile.getUserInfo().subscribe((response: any) => {
       if (response.success) {
-        console.log(response)
         this.userProfile = new FormGroup({
           name: new FormControl(response.user.name, [Validators.required]),
           age: new FormControl(response.user.age, [Validators.required]),
@@ -49,9 +48,18 @@ export class ViewProfileComponent implements OnInit {
       }
     }))
   }
-
+  userImageFound: boolean = false;
   getProfilePic(id: string) {
-    this.userImage = 'https://baymax-task-manager-api.herokuapp.com' + '/users/' + id + '/avatar';
+    this.subscriptions.push(this.profile.getuserImage(id).subscribe((response: Blob) => {
+      let reader = new FileReader();
+      reader.addEventListener("load", () => {
+        this.userImage = reader.result;
+      }, false);
+      if (response) {
+        reader.readAsDataURL(response);
+        this.userImageFound = true;
+      }
+    }))
   }
 
   editOrUpdateProfile(value: string) {
@@ -85,5 +93,36 @@ export class ViewProfileComponent implements OnInit {
         this.snakbar.showSnakBar('error updating user info', MatSnackBarType.error)
       }
     }))
+  }
+
+  removeProfilePic() {
+    this.subscriptions.push(this.profile.deleteMyProfile().subscribe((response: any) => {
+      if (response.success) {
+        this.userImageFound = false
+        this.userImage = '../../../assets/no-profile-pic-icon-7.jpg';
+        this.snakbar.showSnakBar('Image removed', MatSnackBarType.success)
+      } else {
+        this.snakbar.showSnakBar('error unable to remove image', MatSnackBarType.error)
+      }
+    }))
+  }
+
+  uploadnewImage(event: any) {
+    let selectedFile: File;
+    selectedFile = <File>event.target.files[0];
+
+    if (event.target.files) {
+      this.subscriptions.push(this.profile.updateUserProfileImage(selectedFile).subscribe((response: any) => {
+        console.log(response)
+        if (response.success) {
+          this.userImageFound = true;
+          this.getProfilePic(this.userId)
+          this.snakbar.showSnakBar('Image updated', MatSnackBarType.success)
+        } else {
+          this.snakbar.showSnakBar(response.error, MatSnackBarType.error)
+        }
+      }))
+    }
+
   }
 }

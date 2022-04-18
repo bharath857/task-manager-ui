@@ -1,113 +1,90 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
-    <div class="container-fluid">
-        <h5> Task Manager</h5>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item" *ngIf="user?.email">
-                    <a class="nav-link active" aria-current="page" href="javaScript:void()"
-                    (click)="navagate('task-view')">Home</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <div *ngIf="!user?.email" class="beforelogin">
-                    <button class="btn btn-link btn-lg sigin-in" type="button" (click)="loginOrsignin('signin')">
-                        Sign In</button>
-                    <button class="btn btn-success btn-lg change-btn-login" type="button"
-                        (click)="loginOrsignin('login')">Login
-                        In</button>
-                </div>
+<div class="">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <div class="container-fluid">
+            <h5> Task Manager</h5>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item" *ngIf="user?.email">
+                        <a class="nav-link active" aria-current="page" href="javaScript:void()"
+                            (click)="navagate('task-view')">Home</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <div *ngIf="!user?.email" class="beforelogin">
+                        <button class="btn btn-link btn-lg sigin-in" type="button" (click)="loginOrsignin('signin')">
+                            Sign In</button>
+                        <button class="btn btn-success btn-lg change-btn-login" type="button"
+                            (click)="loginOrsignin('login')">Login
+                            In</button>
+                    </div>
 
-                <div *ngIf="user?.email" class="afterlogin">
-                    <button class="btn btn-link btn-lg sigin-in" type="button" (click)="navagate('view-profile')" >
-                        View Profile</button>
-                    <button class="btn btn-success btn-lg change-btn-login" type="button" (click)="logout()">Log
-                        out</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</nav>
-
-<div *ngIf="!user?.email" class="background row">
-    <div class="col-6" style="color: white; margin-top: 3rem;">
-        <h1 class="text-center"> Task Manager</h1>
-    </div>
-
-    <div class="col-6">
-        <div style="background-color: white; border-radius: 2rem; margin-right: 10%; height: 70vh;">
-            <div class="sign-upform">
-                <div style="margin:5%;">
-
-                    <h2 class=" text-center" style="margin-bottom: 1rem;">{{ singinpage ? 'Sign up' : 'Login to Task
-                        Mangager' }}</h2>
-                    <p class="text-center"> See what Task manager is capable of for
-                        free</p>
-                </div>
-
-                <div style="margin: 2rem;">
-
-                    <form [formGroup]="loginForm">
-                        <mat-form-field class="form-input-width" appearance="fill" *ngIf="singinpage">
-                            <mat-label>Name</mat-label>
-                            <input matInput placeholder="Name" formControlName="name">
-                        </mat-form-field>
-
-                        <mat-form-field class="form-input-width" appearance="fill">
-                            <mat-label>Email</mat-label>
-                            <input matInput placeholder="Email" formControlName="email">
-                        </mat-form-field>
-
-                        <mat-form-field class="form-input-width" appearance="fill">
-                            <mat-label>Password</mat-label>
-                            <input matInput placeholder="Password" formControlName="password">
-                        </mat-form-field>
-
-                        <div class="input-group form-input-width" style="justify-content: center;">
-                            <button class="btn btn-success btn-lg change-btn-login" type="button"
-                                [disabled]="!this.loginForm.valid" (click)="onloginOrsignup()">
-                                {{singinpage ? 'Create your Task monitor account':' Login to Task Managar' }}
-
-                            </button>
-                        </div>
-                    </form>
-
-                </div>
+                    <div *ngIf="user?.email" class="afterlogin">
+                        <button class="btn btn-link btn-lg sigin-in" type="button" (click)="navagate('view-profile')">
+                            View Profile</button>
+                        <button class="btn btn-success btn-lg change-btn-login" type="button" (click)="logout()">Log
+                            out</button>
+                    </div>
+                </form>
             </div>
         </div>
-
-    </div>
+    </nav>
 </div>
 
-<!-- 
-    
-    <div class="input-group has-validation form-input-width" *ngIf="singinpage">
-        <span class="input-group-text form-input-name-width" id="basic-addon1">Name</span>
 
-        <input type="text" class="form-control" placeholder="Name" aria-label="Name"
-            [ngClass]="{ 'is-invalid' :(this.loginForm.get('name')?.touched && !this.loginForm.get('name')?.valid) }"
-            aria-describedby="basic-addon1" formControlName="name">
-        <div class="invalid-feedback" style="margin-left: 30%;">
-            <p> Please give user name </p>
+<div *ngIf="!user?.email" class="background">
+    <div class="row">
+        <div class="col-xl-5 col-lg-5 col-md-4 col-sm-4 task-manager-herading">
+            <h1 class="text-center"> Task Manager</h1>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-7 col-sm-7">
+            <div class="task-manger-login-part">
+                <div class="sign-upform">
+                    <div style="margin:5%;">
+
+                        <h2 class=" text-center" style="margin-bottom: 1rem;">{{ singinpage ? 'Sign up' : 'Login to Task
+                            Mangager' }}</h2>
+                        <p class="text-center"> See what Task manager is capable of for
+                            free</p>
+                    </div>
+
+                    <div style="margin: 2rem;">
+
+                        <form [formGroup]="loginForm">
+                            <mat-form-field class="form-input-width" appearance="fill" *ngIf="singinpage">
+                                <mat-label>Name</mat-label>
+                                <input matInput placeholder="Name" formControlName="name">
+                            </mat-form-field>
+
+                            <mat-form-field class="form-input-width" appearance="fill">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Email" formControlName="email">
+                            </mat-form-field>
+
+                            <mat-form-field class="form-input-width" appearance="fill">
+                                <mat-label>Password</mat-label>
+                                <input matInput placeholder="Password" formControlName="password">
+                            </mat-form-field>
+
+                            <div class="login-btn">
+                                <button class="btn btn-success btn-lg change-btn-login my-2" type="button"
+                                    [disabled]="!this.loginForm.valid" (click)="onloginOrsignup()">
+                                    {{singinpage ? 'Create your Task monitor account':' Login to Task Managar' }}
+
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
         </div>
     </div>
-
-    <div class="input-group has-validation form-input-width">
-        <span class="input-group-text form-input-name-width" id="basic-addon1">Email</span>
-        <input type="text" class="form-control" placeholder="Email" aria-label="Email"
-            [ngClass]="{ 'is-invalid' :this.loginForm.get('email')?.touched }"
-            aria-describedby="basic-addon1" formControlName="email">
-        <div class="invalid-feedback" style="margin-left: 30%;">
-            <p> Please give valid email id </p>
-        </div>
-    </div>
-
-    <div class="input-group form-input-width">
-        <span class="input-group-text form-input-name-width" id="basic-addon1">Password</span>
-        <input type="text" class="form-control" placeholder="Password" aria-label="Password"
-            aria-describedby="basic-addon1" minlength="8" formControlName="password">
-    </div>
- -->
+</div>

@@ -60,7 +60,6 @@ export class ProfileService {
       this.setToken(response.token)
       return response.user
     }), catchError(error => {
-      console.log(error);
       return of(null);
     }))
   }
@@ -94,7 +93,7 @@ export class ProfileService {
     return this.http.patch(url, req, this.httpOptions)
   }
 
-  getUserInfo(){
+  getUserInfo() {
     let params: Param[] = [];
     let url = this.utilService.generateURL('/users/profile', params)
     return this.http.get(url, this.httpOptions)
@@ -106,19 +105,30 @@ export class ProfileService {
     return this.http.delete(url, this.httpOptions)
   }
 
-  updateUserProfileImage(req: string) {
+  updateUserProfileImage(req: any) {
     let params: Param[] = [];
+    const file = new FormData();
+    file.append('avatar', req, req.name)
     let url = this.utilService.generateURL('/users/profile/avatar', params)
-    return this.http.post(url, req, this.httpOptions)
+    return this.http.post(url, file).pipe(map((response: any) => {
+      return response
+    }), catchError(error => {
+      let response = {
+        success: false,
+        error: error.error.error
+      }
+      console.log(error)
+      return of(response);
+    }))
   }
 
   getuserImage(id: string) {
     let params: Param[] = [];
     let url = this.utilService.generateURL('/users/' + id + '/avatar', params)
-    console.log(url)
-    return this.http.get(url, this.httpOptions)
+    return this.http.get(url, {
+      responseType: 'blob'
+    })
   }
-
   removeImage(id: string) {
     let params: Param[] = [];
     let url = this.utilService.generateURL('/users/profile/avatar', params)
