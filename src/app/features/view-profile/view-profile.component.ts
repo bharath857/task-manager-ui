@@ -16,8 +16,9 @@ export class ViewProfileComponent implements OnInit {
   editProfile: boolean = false;
   userProfile: FormGroup
   userId: string = '';
-  createdon:string = '';
-
+  createdon: string = '';
+  userImageFound: boolean = false;
+  
   subscriptions: Subscription[] = [];
 
   constructor(private profile: ProfileService,
@@ -50,7 +51,7 @@ export class ViewProfileComponent implements OnInit {
       }
     }))
   }
-  userImageFound: boolean = false;
+
   getProfilePic(id: string) {
     this.subscriptions.push(this.profile.getuserImage(id).subscribe((response: Blob) => {
       let reader = new FileReader();
@@ -127,7 +128,7 @@ export class ViewProfileComponent implements OnInit {
 
   }
 
-  logoutallDevices(){
-    
+  logoutallDevices() {
+
   }
 }

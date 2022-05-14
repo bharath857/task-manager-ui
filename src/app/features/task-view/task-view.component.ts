@@ -32,8 +32,8 @@ export class TaskViewComponent implements OnInit, AfterViewInit {
   pageIndex = 0;
   newTaskName: string = '';
   taskForms: FormGroup;
-  userid:string = '';
-  
+  userid: string = '';
+
   subscriptions: Subscription[] = [];
 
   @ViewChild(MatSort, { static: false }) sort: MatSort = new MatSort;

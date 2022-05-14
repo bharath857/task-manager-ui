@@ -14,7 +14,7 @@ export class SpinnerComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
     private spinner: SpinnerLoadingService) {
-   
+
     this.router.events.subscribe((routerEvent: Event) => {
       this.checkRouerEvent(routerEvent);
     });

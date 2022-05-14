@@ -5,9 +5,9 @@ import { ViewProfileComponent } from './features/view-profile/view-profile.compo
 import { AuthGuardService } from './shared/intercepter/authGaurd/auth-guard.service';
 
 const routes: Routes = [
-    {path:'view-profile', component:ViewProfileComponent, canActivate:[AuthGuardService]},
-    {path:'task-view', component:TaskViewComponent, canActivate:[AuthGuardService]},
-    
+  { path: 'view-profile', component: ViewProfileComponent, canActivate: [AuthGuardService] },
+  { path: 'task-view', component: TaskViewComponent, canActivate: [AuthGuardService] },
+
 ];
 
 @NgModule({
